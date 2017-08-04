@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(expressValidator());
 
-consign()
+consign({cwd: 'app'})
     .include('app/routes')
     .then('app/models')
     .then('app/controllers')
