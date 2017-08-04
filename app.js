@@ -33,8 +33,18 @@ io.on('connection', function(socket) {
         );
 
         socket.broadcast.emit('msgParaCliente',
-            {apelido: data.apelido, mensagem: data.mensagem }
+            {apelido: data.apelido}
         );
+
+        if(parseInt(data.apelido_atualizado_nos_clientes) == 0 ) {
+            socket.emit('participantesParaCliente',
+                {apelido: data.apelido}
+            );
+
+            socket.broadcast.emit('participantesParaCliente',
+                {apelido: data.apelido, mensagem: data.mensagem }
+            );
+        }
 
 
     })
