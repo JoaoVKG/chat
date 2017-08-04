@@ -22,6 +22,7 @@
 				$("#conversa").show();
 				$("#participantes").hide();
 				ocultaNavbar();
+				window.scrollTo(0, document.body.scrollHeight);
 			});
 
 			$("#exibe_participantes").click(function () {
@@ -134,10 +135,6 @@
 				$('#enviar').trigger('click');
 			}
 		});
-
-		$('#exibe_chat').click(function () {
-			window.scrollTo(0, document.body.scrollHeight);
-		})
 
 		$('#enviar').click(function () {
 			if ($('#mensagem').val()) {
