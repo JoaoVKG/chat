@@ -1,12 +1,17 @@
 var app = require('./config/server');
 
-const server = app.listen(process.env.PORT || 3000, function() {
-    console.log("Servidor está online");
+const server = app.listen(process.env.PORT, function() {
+    console.log("Servidor está online na porta " + process.env.PORT);
 })
 
 const io = require('socket.io').listen(server);
 
 app.set('io', io);
+
+app.get('/', function (req, res) {
+        //console.log(application);
+        app.app.controllers.index.home(app, req, res);
+    });
 
 io.on('connection', function(socket) {
     console.log('Usuário conectou');
