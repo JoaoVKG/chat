@@ -8,10 +8,10 @@ const io = require('socket.io').listen(server);
 
 app.set('io', io);
 
-app.get('/', function (req, res) {
-        //console.log(application);
-        app.app.controllers.index.home(app, req, res);
-    });
+// app.get('/', function (req, res) {
+//         //console.log(application);
+//         app.app.controllers.index.home(app, req, res);
+//     });
 
 io.on('connection', function(socket) {
     console.log('Usuário conectou');
