@@ -11,7 +11,7 @@
 
 	<!-- bootstrap - link cdn -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
-	 crossorigin="anonymous">
+	    crossorigin="anonymous">
 
 	<!-- estilo -->
 	<link href="css/style.css" rel="stylesheet">
@@ -63,9 +63,9 @@
 					<li>
 						<a href="#" id="exibe_chat">Chat</a>
 					</li>
-					 <li>
+					<li>
 						<a href="#" id="exibe_participantes">Participantes</a>
-					</li> 
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -97,7 +97,7 @@
 				<div class="col-md-12">
 					<div class="input-group">
 						<input type="hidden" value="<%=apelido%>" id="apelido">
-						<input type="hidden" value="0" id="apelido_atualizado_nos_clientes" >
+						<input type="hidden" value="0" id="apelido_atualizado_nos_clientes">
 						<input type="text" class="form-control" placeholder="Mensagem" id="mensagem">
 						<span class="input-group-btn">
 								<button class="btn btn-default" type="button" id="enviar">></button>
@@ -109,19 +109,23 @@
 	</nav>
 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-	 crossorigin="anonymous"></script>
+	    crossorigin="anonymous"></script>
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
 		var host = window.location.host;
 		var socket = io(host);
-		
-		$('input').on("focus", function(){
-			$("html, body").animate({ scrollTop: $(document).height() });
-		});
-		
-		socket.emit('apelido', { apelido: $('#apelido').val() })
 
-		$(document).ready(function() {
+		$('input').on("focus", function () {
+			$("html, body").animate({
+				scrollTop: $(document).height()
+			});
+		});
+
+		socket.emit('apelido', {
+			apelido: $('#apelido').val()
+		})
+
+		$(document).ready(function () {
 			$('#mensagem').focus();
 		})
 
@@ -131,21 +135,23 @@
 			}
 		});
 
+		$('#exibir_chat').click(function () {
+			window.scrollTo(0, document.body.scrollHeight);
+		})
+
 		$('#enviar').click(function () {
 			if ($('#mensagem').val()) {
-				socket.emit('msgParaServidor',
-					{
-						apelido: $('#apelido').val(),
-						mensagem: $('#mensagem').val(),
-						apelido_atualizado_nos_clientes : $('#apelido_atualizado_nos_clientes').val()
-					}
-				)
+				socket.emit('msgParaServidor', {
+					apelido: $('#apelido').val(),
+					mensagem: $('#mensagem').val(),
+					apelido_atualizado_nos_clientes: $('#apelido_atualizado_nos_clientes').val()
+				})
 				$('#mensagem').val('');
 				$('#apelido_atualizado_nos_clientes').val(1);
 			}
 
 		})
-		
+
 		socket.on('msgParaCliente', function (data) {
 			var html = '';
 			html += '<div class="dialogo">';
@@ -165,7 +171,6 @@
 			html += '</span>';
 			$('#pessoas').append(html);
 		})
-
 	</script>
 </body>
 
