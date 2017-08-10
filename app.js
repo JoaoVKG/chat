@@ -28,7 +28,6 @@ io.on('connection', function(socket) {
     })
 
     socket.on('msgParaServidor', function(data) {
-<<<<<<< HEAD
         if(data.mensagem == "gemidao-do-zap.exe") {
             socket.broadcast.emit('gemidao');
         } else {
@@ -41,16 +40,6 @@ io.on('connection', function(socket) {
             );
 
         }
-
-=======
-        socket.emit('msgParaCliente',
-            {apelido: data.apelido, mensagem: data.mensagem}
-        );
-
-        socket.broadcast.emit('msgParaCliente',
-            {apelido: data.apelido, mensagem: data.mensagem}
-        );
->>>>>>> 0110022adec7246840de0ac8755b4c3b7f217ff7
 
         
         if(parseInt(data.apelido_atualizado_nos_clientes) == 0 ) {
