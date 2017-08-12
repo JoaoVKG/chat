@@ -36,7 +36,7 @@ io.on('connection', function(socket) {
             );
 
             socket.broadcast.emit('msgParaCliente',
-                {apelido: data.apelido}
+                {apelido: data.apelido, mensagem: data.mensagem}
             );
 
         }
